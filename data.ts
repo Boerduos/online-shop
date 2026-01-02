@@ -2,51 +2,51 @@ import { Product } from './types';
 
 export const PRODUCTS: Product[] = [
   {
-    id: "P001",
-    name: "复古机械键盘",
-    price: 899,
-    thumbnail: "https://picsum.photos/400/300?random=1",
-    shortDescription: "打字机的触感，现代的功能。",
-    longDescription: "这款复古风格的机械键盘采用青轴设计，提供令人满意的触觉反馈和经典的咔哒声。它支持蓝牙 5.0 和 USB-C 有线连接，兼容 Windows 和 Mac。圆形键帽和背光设计让您的桌面瞬间充满格调。内置 4000mAh 电池，续航持久。"
+    id: "FW001",
+    name: "网红加特林",
+    price: 88,
+    thumbnail: "https://images.unsplash.com/photo-1574068468668-a05a11f871da?auto=format&fit=crop&w=800&q=80",
+    shortDescription: "火力全开，持续喷射，朋友圈刷屏神器。",
+    longDescription: "当前最火爆的网红烟花！手持式加特林造型，点燃后可连续喷射数百发七彩珠光，射程远、射速快，模拟机枪扫射的视觉效果，不仅好玩更是拍照视频的绝佳道具。适合海边、广场等开阔地带燃放。"
   },
   {
-    id: "P002",
-    name: "极简实木台灯",
-    price: 350,
-    thumbnail: "https://picsum.photos/400/300?random=2",
-    shortDescription: "温暖的光线，照亮您的阅读时光。",
-    longDescription: "手工制作的橡木底座搭配亚麻灯罩，这款台灯为任何房间带来自然温馨的氛围。触摸式开关支持三档亮度调节。LED 光源无频闪，有效保护视力。底部配有防滑垫，稳固且不伤家具表面。"
+    id: "FW002",
+    name: "浪漫仙女棒 (10支装)",
+    price: 15,
+    thumbnail: "https://images.unsplash.com/photo-1509219438316-a36c348a1d1e?auto=format&fit=crop&w=800&q=80",
+    shortDescription: "唯美冷光，低烟环保，表白拍照必备。",
+    longDescription: "经典的仙女棒，采用低烟环保配方，燃烧时火花细腻璀璨，如星光般闪烁。燃烧时间长，非常适合情侣表白、生日派对或女生拍照。安全系数高，手持不烫手（需注意燃放角度），营造温馨浪漫氛围。"
   },
   {
-    id: "P003",
-    name: "降噪无线耳机",
-    price: 1299,
-    thumbnail: "https://picsum.photos/400/300?random=3",
-    shortDescription: "沉浸式音频体验，远离喧嚣。",
-    longDescription: "配备行业领先的主动降噪技术，这款耳机能消除高达 95% 的低频噪音。40mm 驱动单元提供深沉的低音和清脆的高音。耳罩采用记忆海绵，佩戴舒适。支持快速充电，充电 10 分钟即可播放 3 小时。"
+    id: "FW003",
+    name: "盛世欢歌·组合烟花",
+    price: 288,
+    thumbnail: "https://images.unsplash.com/photo-1467810563316-b5476525c0f9?auto=format&fit=crop&w=800&q=80",
+    shortDescription: "88发大礼盒，高空绽放，绚丽多彩。",
+    longDescription: "庆典级组合烟花，箱体稳固。点燃后88发礼花弹依次升空，包含牡丹、菊花、笑脸等多种花型，红绿金银四色交替，声响震撼，覆盖面积大。是过年过节、开业庆典、婚礼祝兴的镇场之宝。"
   },
   {
-    id: "P004",
-    name: "智能保温杯",
-    price: 199,
-    thumbnail: "https://picsum.photos/400/300?random=4",
-    shortDescription: "随时随地，喝到温度适宜的水。",
-    longDescription: "杯盖上的 LCD 触摸屏实时显示水温。采用 316 医疗级不锈钢内胆，双层真空保温技术，可保温保冷长达 12 小时。内置饮水提醒功能，帮助您养成健康的饮水习惯。防水等级 IPX7。"
+    id: "FW004",
+    name: "七彩旋转喷泉",
+    price: 35,
+    thumbnail: "https://images.unsplash.com/photo-1485627698386-4cf711754423?auto=format&fit=crop&w=800&q=80",
+    shortDescription: "地面旋转升空，光影交错，趣味十足。",
+    longDescription: "放置在平整地面点燃，烟花会先在地面高速旋转喷出五彩火花，形成绚丽的光圈，随后伴随啸叫声向上喷射出高高的银色火柱，最后绽放出一朵小花。深受小朋友喜爱的经典地面烟花。"
   },
   {
-    id: "P005",
-    name: "人体工学办公椅",
-    price: 2500,
-    thumbnail: "https://picsum.photos/400/300?random=5",
-    shortDescription: "全天候舒适支撑，告别腰酸背痛。",
-    longDescription: "专为长时间久坐设计，这款椅子具有自适应腰部支撑、可调节头枕和 4D 扶手。高弹性网布透气性极佳，夏天也不会闷热。底盘坚固耐用，静音滚轮顺滑不伤地板。通过 BIFMA 认证。"
+    id: "FW005",
+    name: "孔雀开屏",
+    price: 68,
+    thumbnail: "https://images.unsplash.com/photo-1516216628259-222405022b5d?auto=format&fit=crop&w=800&q=80",
+    shortDescription: "扇形发射，如孔雀开屏般壮观。",
+    longDescription: "采用扇形排管设计，点燃后多束火花同时向扇面方向喷射，瞬间照亮夜空，形状酷似孔雀开屏。金色的麦穗效果搭配噼里啪啦的爆裂声，寓意吉祥如意，花开富贵。视觉宽度极佳。"
   },
   {
-    id: "P006",
-    name: "便携式手冲咖啡套装",
-    price: 450,
-    thumbnail: "https://picsum.photos/400/300?random=6",
-    shortDescription: "旅行中的精致咖啡时光。",
-    longDescription: "包含手动磨豆机、折叠滤杯、精细手冲壶和收纳包。所有组件均采用食品级材料制成。磨豆机采用陶瓷磨芯，可调节研磨粗细。整套装备轻便小巧，适合露营、出差或办公室使用。"
+    id: "FW006",
+    name: "水母烟花 (5发装)",
+    price: 45,
+    thumbnail: "https://images.unsplash.com/photo-1517505199652-325203a3d544?auto=format&fit=crop&w=800&q=80",
+    shortDescription: "独特造型，空中漂浮，梦幻奇特。",
+    longDescription: "一种新型的创意烟花，发射到空中后不会瞬间炸开消失，而是形成酷似水母形状的白色光环，并在空中缓缓漂浮下降，姿态优雅神秘。极具观赏性，给您带来不一样的视觉体验。"
   }
 ];

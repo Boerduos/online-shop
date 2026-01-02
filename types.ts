@@ -14,10 +14,8 @@ export interface CartItem {
 
 export interface Address {
   fullName: string;
-  street: string;
-  city: string;
-  state: string;
-  zipCode: string;
+  phone: string;
+  fullAddress: string;
 }
 
 export interface Order {
@@ -26,7 +24,6 @@ export interface Order {
   subtotal: number;
   tax: number;
   total: number;
-  billingAddress: Address;
   shippingAddress: Address;
   date: string;
 }

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { CartItem, Product, ViewState, Address, Order } from '../types';
+import React, { useState } from 'react';
+import { CartItem, ViewState, Address, Order } from '../types';
 import { Trash2, Plus, Minus, ArrowLeft, CreditCard } from 'lucide-react';
 
 interface CartProps {
@@ -11,20 +11,9 @@ interface CartProps {
 }
 
 const Cart: React.FC<CartProps> = ({ cart, onNavigate, onUpdateQuantity, onClearCart, onPlaceOrder }) => {
-  const [billingAddress, setBillingAddress] = useState<Address>({
-    fullName: '', street: '', city: '', state: '', zipCode: ''
+  const [address, setAddress] = useState<Address>({
+    fullName: '', phone: '', fullAddress: ''
   });
-  const [shippingAddress, setShippingAddress] = useState<Address>({
-    fullName: '', street: '', city: '', state: '', zipCode: ''
-  });
-  
-  const [useBillingForShipping, setUseBillingForShipping] = useState(false);
-
-  useEffect(() => {
-    if (useBillingForShipping) {
-      setShippingAddress({ ...billingAddress });
-    }
-  }, [billingAddress, useBillingForShipping]);
 
   const subtotal = cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
   const taxRate = 0.08; // 8% Sales Tax
@@ -42,8 +31,7 @@ const Cart: React.FC<CartProps> = ({ cart, onNavigate, onUpdateQuantity, onClear
       subtotal,
       tax,
       total,
-      billingAddress,
-      shippingAddress: useBillingForShipping ? billingAddress : shippingAddress,
+      shippingAddress: address,
       date: new Date().toISOString()
     };
     
@@ -57,69 +45,6 @@ const Cart: React.FC<CartProps> = ({ cart, onNavigate, onUpdateQuantity, onClear
       onClearCart();
     }
   };
-
-  const AddressForm = ({ title, address, setAddress, disabled }: { title: string, address: Address, setAddress: (a: Address) => void, disabled?: boolean }) => (
-    <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200 mb-6">
-      <h3 className="text-lg font-medium text-slate-900 mb-4">{title}</h3>
-      <div className="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6">
-        <div className="sm:col-span-6">
-          <label className="block text-sm font-medium text-slate-700">全名</label>
-          <input
-            type="text"
-            required
-            disabled={disabled}
-            value={address.fullName}
-            onChange={e => setAddress({...address, fullName: e.target.value})}
-            className="mt-1 focus:ring-emerald-500 focus:border-emerald-500 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md p-2 border"
-          />
-        </div>
-        <div className="sm:col-span-6">
-          <label className="block text-sm font-medium text-slate-700">街道地址</label>
-          <input
-            type="text"
-            required
-            disabled={disabled}
-            value={address.street}
-            onChange={e => setAddress({...address, street: e.target.value})}
-            className="mt-1 focus:ring-emerald-500 focus:border-emerald-500 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md p-2 border"
-          />
-        </div>
-        <div className="sm:col-span-2">
-          <label className="block text-sm font-medium text-slate-700">城市</label>
-          <input
-            type="text"
-            required
-            disabled={disabled}
-            value={address.city}
-            onChange={e => setAddress({...address, city: e.target.value})}
-            className="mt-1 focus:ring-emerald-500 focus:border-emerald-500 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md p-2 border"
-          />
-        </div>
-        <div className="sm:col-span-2">
-          <label className="block text-sm font-medium text-slate-700">省/州</label>
-          <input
-            type="text"
-            required
-            disabled={disabled}
-            value={address.state}
-            onChange={e => setAddress({...address, state: e.target.value})}
-            className="mt-1 focus:ring-emerald-500 focus:border-emerald-500 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md p-2 border"
-          />
-        </div>
-        <div className="sm:col-span-2">
-          <label className="block text-sm font-medium text-slate-700">邮政编码</label>
-          <input
-            type="text"
-            required
-            disabled={disabled}
-            value={address.zipCode}
-            onChange={e => setAddress({...address, zipCode: e.target.value})}
-            className="mt-1 focus:ring-emerald-500 focus:border-emerald-500 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md p-2 border"
-          />
-        </div>
-      </div>
-    </div>
-  );
 
   return (
     <div className="bg-slate-50 min-h-screen py-12">
@@ -149,7 +74,7 @@ const Cart: React.FC<CartProps> = ({ cart, onNavigate, onUpdateQuantity, onClear
         ) : (
           <form onSubmit={handlePlaceOrder} className="lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-start">
             
-            {/* Left Column: Cart Items & Addresses */}
+            {/* Left Column: Cart Items & Address */}
             <div className="lg:col-span-7">
               {/* Cart Items List */}
               <div className="bg-white shadow-sm rounded-lg mb-8 overflow-hidden">
@@ -222,25 +147,52 @@ const Cart: React.FC<CartProps> = ({ cart, onNavigate, onUpdateQuantity, onClear
                 </div>
               </div>
 
-              {/* Address Forms */}
-              <AddressForm title="账单地址" address={billingAddress} setAddress={setBillingAddress} />
-              
-              <div className="flex items-center mb-4">
-                <input
-                  id="same-address"
-                  type="checkbox"
-                  checked={useBillingForShipping}
-                  onChange={(e) => setUseBillingForShipping(e.target.checked)}
-                  className="h-4 w-4 text-emerald-600 focus:ring-emerald-500 border-slate-300 rounded"
-                />
-                <label htmlFor="same-address" className="ml-2 block text-sm text-slate-900">
-                  收件地址与账单地址相同
-                </label>
-              </div>
+              {/* Address Form (Simplified) */}
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200 mb-6">
+                <h3 className="text-lg font-medium text-slate-900 mb-4">收货信息</h3>
+                <div className="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6">
+                  
+                  {/* Full Name */}
+                  <div className="sm:col-span-3">
+                    <label className="block text-sm font-medium text-slate-700">收件人姓名</label>
+                    <input
+                      type="text"
+                      required
+                      value={address.fullName}
+                      onChange={e => setAddress({...address, fullName: e.target.value})}
+                      className="mt-1 focus:ring-emerald-500 focus:border-emerald-500 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md p-2 border"
+                      placeholder="例如：张三"
+                    />
+                  </div>
 
-              {!useBillingForShipping && (
-                <AddressForm title="收件地址" address={shippingAddress} setAddress={setShippingAddress} />
-              )}
+                  {/* Contact Info: Phone Only */}
+                  <div className="sm:col-span-3">
+                    <label className="block text-sm font-medium text-slate-700">联系电话</label>
+                    <input
+                      type="tel"
+                      required
+                      value={address.phone}
+                      onChange={e => setAddress({...address, phone: e.target.value})}
+                      className="mt-1 focus:ring-emerald-500 focus:border-emerald-500 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md p-2 border"
+                      placeholder="手机号码"
+                    />
+                  </div>
+
+                  {/* Simplified Address Field */}
+                  <div className="sm:col-span-6">
+                    <label className="block text-sm font-medium text-slate-700">详细收货地址</label>
+                    <textarea
+                      required
+                      rows={3}
+                      value={address.fullAddress}
+                      onChange={e => setAddress({...address, fullAddress: e.target.value})}
+                      className="mt-1 focus:ring-emerald-500 focus:border-emerald-500 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md p-2 border"
+                      placeholder="省/市/区/街道门牌号"
+                    />
+                  </div>
+
+                </div>
+              </div>
             </div>
 
             {/* Right Column: Order Summary */}

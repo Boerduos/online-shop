@@ -1,6 +1,6 @@
 import React from 'react';
 import { Order, ViewState } from '../types';
-import { CheckCircle, Store } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 
 interface OrderSuccessProps {
   order: Order | null;
@@ -57,12 +57,12 @@ const OrderSuccess: React.FC<OrderSuccessProps> = ({ order, onNavigate }) => {
              </div>
 
              <div className="bg-slate-50 p-4 rounded-md mt-6">
-                <h4 className="text-sm font-bold text-slate-900 mb-2">配送至:</h4>
-                <p className="text-sm text-slate-600">
-                  {order.shippingAddress.fullName}<br />
-                  {order.shippingAddress.street}<br />
-                  {order.shippingAddress.city}, {order.shippingAddress.state} {order.shippingAddress.zipCode}
-                </p>
+                <h4 className="text-sm font-bold text-slate-900 mb-2">配送信息:</h4>
+                <div className="text-sm text-slate-600 space-y-1">
+                  <p><span className="font-medium text-slate-700">收件人:</span> {order.shippingAddress.fullName}</p>
+                  <p><span className="font-medium text-slate-700">电话:</span> {order.shippingAddress.phone}</p>
+                  <p><span className="font-medium text-slate-700">地址:</span> {order.shippingAddress.fullAddress}</p>
+                </div>
              </div>
           </div>
 
